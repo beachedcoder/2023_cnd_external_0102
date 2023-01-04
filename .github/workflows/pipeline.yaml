@@ -50,7 +50,7 @@ jobs:
       - name: Login to docker hub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          username: ${{ env.DOCKER_ID }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
           
       - name: Docker Setup Buildx
@@ -62,7 +62,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE }}:a.${{ github.run_number }}
+          tags: ${{ env.DOCKER_ID }}/${{ env.IMAGE }}:a.${{ github.run_number }}
   
   
   
